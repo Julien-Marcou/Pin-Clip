@@ -10,10 +10,10 @@
 
 	let contextMenuPosition = {x: 0, y: 0, source: null};
 
-	function addPin() {
+	function addPin(color) {
 		let pin = document.createElement('div');
 		pin.className = 'pin-clip-pin'
-		pin.setAttribute('style', `background-color: red; width: ${pinSize}px; height: ${pinSize}px; position: absolute; border-radius: ${pinSize}px; left: ${contextMenuPosition.x - (pinSize / 2)}px; top: ${contextMenuPosition.y - (pinSize / 2)}px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);`);
+		pin.setAttribute('style', `background-color: ${color}; width: ${pinSize}px; height: ${pinSize}px; position: absolute; border-radius: ${pinSize}px; left: ${contextMenuPosition.x - (pinSize / 2)}px; top: ${contextMenuPosition.y - (pinSize / 2)}px; box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);`);
 		pin.addEventListener('dblclick', (event) => {
 			document.body.removeChild(pin);
 		});
@@ -22,7 +22,7 @@
 		});
 
 		let input = document.createElement('input');
-		input.setAttribute('style', `width: 100%; text-align: center; height: ${pinSize}px; line-height: ${pinSize}px; border: 0 none; background-color: transparent; font-weight: bold; color: #fff; font-size: 16px;`);
+		input.setAttribute('style', `color: ${color === 'white' ? '#222' : '#fff'}; width: 100%; text-align: center; height: ${pinSize}px; line-height: ${pinSize}px; border: 0 none; background-color: transparent; font-weight: bold; font-size: 16px;`);
 
 		pin.appendChild(input);
 		document.body.appendChild(pin);
@@ -48,7 +48,7 @@
 
 	browser.runtime.onMessage.addListener((message) => {
 		if (message.command === 'add-pin') {
-			addPin();
+			addPin(message.color);
 		}
 	});
 
