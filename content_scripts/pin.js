@@ -9,6 +9,7 @@
 	const pinSize = 42;
 
 	let contextMenuPosition = {x: 0, y: 0, source: null};
+	let elementSelected = null;
 
 	function addPin(color) {
 		let pin = document.createElement('div');
@@ -18,6 +19,7 @@
 			document.body.removeChild(pin);
 		});
 		pin.addEventListener('mousedown', (event) => {
+			elementSelected = event.target.parentElement;
 			document.addEventListener('mousemove', movePin, true);
 		});
 
@@ -31,7 +33,7 @@
 	}
 
 	function movePin(event) {
-		let pin = event.target.parentElement;
+		let pin = elementSelected;
 		pin.style.left = `${event.clientX + window.scrollX - (pinSize / 2)}px`;
 		pin.style.top = `${event.clientY  + window.scrollY - (pinSize / 2)}px`;
 	}
@@ -43,6 +45,7 @@
 	});
 
 	document.addEventListener('mouseup', (event) => {
+		elementSelected = null;
 		document.removeEventListener('mousemove', movePin, true);
 	});
 
