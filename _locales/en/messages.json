@@ -1,0 +1,17 @@
+{
+	"addRedPin": {
+		"message": "Add a red pin"
+	},
+	"addGreenPin": {
+		"message": "Add a green pin"
+	},
+	"addBluePin": {
+		"message": "Add a blue pin"
+	},
+	"addBlackPin": {
+		"message": "Add a black pin"
+	},
+	"addWhitePin": {
+		"message": "Add a white pin"
+	}
+}

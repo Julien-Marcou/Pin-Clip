@@ -4,6 +4,7 @@
   "name": "Pin&Clip",
   "description": "Pin anything you want",
   "version": "1.0",
+  "default_locale": "en",
   "applications": {
     "gecko": {
       "strict_min_version": "58"

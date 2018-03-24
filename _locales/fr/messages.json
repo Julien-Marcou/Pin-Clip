@@ -1,0 +1,17 @@
+{
+	"addRedPin": {
+		"message": "Ajouter une épingle rouge"
+	},
+	"addGreenPin": {
+		"message": "Ajouter une épingle verte"
+	},
+	"addBluePin": {
+		"message": "Ajouter une épingle bleue"
+	},
+	"addBlackPin": {
+		"message": "Ajouter une épingle noire"
+	},
+	"addWhitePin": {
+		"message": "Ajouter une épingle blanche"
+	}
+}

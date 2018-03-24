@@ -6,31 +6,31 @@ function onError() {
 
 browser.menus.create({
 	id: 'add-pin-red',
-	title: 'Ajouter une puce rouge',
+	title: browser.i18n.getMessage('addRedPin'),
 	contexts: ['all'],
 }, onError);
 
 browser.menus.create({
 	id: 'add-pin-green',
-	title: 'Ajouter une puce verte',
+	title: browser.i18n.getMessage('addGreenPin'),
 	contexts: ['all'],
 }, onError);
 
 browser.menus.create({
 	id: 'add-pin-blue',
-	title: 'Ajouter une puce bleue',
+	title: browser.i18n.getMessage('addBluePin'),
 	contexts: ['all'],
 }, onError);
 
 browser.menus.create({
 	id: 'add-pin-black',
-	title: 'Ajouter une puce noire',
+	title: browser.i18n.getMessage('addBlackPin'),
 	contexts: ['all'],
 }, onError);
 
 browser.menus.create({
 	id: 'add-pin-white',
-	title: 'Ajouter une puce blanche',
+	title: browser.i18n.getMessage('addWhitePin'),
 	contexts: ['all'],
 }, onError);
 
