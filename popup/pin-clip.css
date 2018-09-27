@@ -1,0 +1,36 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	width: 350px;
+	color: #111;
+	font-size: 18px;
+}
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 5px;
+}
+.column {
+	padding: 5px;
+}
+.column.width-100 {
+	flex: 0 0 100%;
+}
+.column.width-50 {
+	flex: 0 0 50%;
+}
+button {
+	cursor: pointer;
+	width: 100%;
+	background: #eee;
+	border: none;
+	outline: none;
+	border-radius: 2px;
+	padding: 0;
+	line-height: 2rem;
+	text-align: center;
+}
+button:hover {
+	background-color: #ddd;
+}

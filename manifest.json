@@ -11,6 +11,12 @@
     }
   },
 
+  "browser_action": {
+    "default_icon": "icons/flag-32.png",
+    "default_title": "Pin&Clip",
+    "default_popup": "popup/pin-clip.html"
+  },
+
   "background": {
     "scripts": ["background.js"]
   },
