@@ -24,7 +24,8 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["content_scripts/pin.js"]
+      "js": ["content_scripts/pin.js"],
+      "css" : ["content_styles/pin.css"]
     }
   ],
 

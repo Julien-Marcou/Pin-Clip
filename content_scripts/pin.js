@@ -83,4 +83,8 @@
 		}
 	});
 
+	let overlay = document.createElement('div');
+	overlay.className = 'pin-clip-overlay';
+	document.body.appendChild(overlay);
+
 })();
