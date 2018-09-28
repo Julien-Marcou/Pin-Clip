@@ -6,8 +6,6 @@
 
 	window.hasRun = true;
 
-	const pinSize = 42;
-
 	const xOriginCentered = true;
 
 	let contextMenuPosition = {x: 0, y: 0, source: null};
@@ -29,7 +27,9 @@
 	function addPin(color) {
 		let pin = document.createElement('div');
 		pin.classList.add('pin-clip-pin');
-		pin.setAttribute('style', `background-color: ${color}; width: ${pinSize}px; height: ${pinSize}px; position: absolute; border-radius: ${pinSize}px; left: calc(50% + ${contextMenuPosition.x}px); top: ${contextMenuPosition.y}px; transform: translate(-50%, -50%); filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));`);
+		pin.style.backgroundColor = color;
+		pin.style.left = `calc(50% + ${contextMenuPosition.x}px)`;
+		pin.style.top = `${contextMenuPosition.y}px`;
 		pin.addEventListener('dblclick', (event) => {
 			overlay.removeChild(pin);
 		});
@@ -39,7 +39,8 @@
 		});
 
 		let needle = document.createElement('div');
-		needle.setAttribute('style', `border-width: ${pinSize}px ${pinSize / 3}px 0 ${pinSize / 3}px; border-color: ${color} transparent transparent transparent; border-style: solid; width: 0; height: 0; position: absolute; top: ${pinSize / 2}px; left: ${pinSize / 6}px; transform-origin: center top;`);
+		needle.classList.add('pin-clip-pin-needle');
+		needle.style.borderTopColor = color;
 		needle.addEventListener('mousedown', (event) => {
 			event.preventDefault();
 			event.stopPropagation();
@@ -48,7 +49,8 @@
 		});
 
 		let input = document.createElement('input');
-		input.setAttribute('style', `color: ${color === 'white' ? '#222' : '#fff'}; width: 100%; text-align: center; height: ${pinSize}px; line-height: ${pinSize}px; border-radius: ${pinSize}px; border: 0 none; background-color: transparent; font-weight: bold; font-size: 16px; position: absolute; top: 0; left: 0;`);
+		input.classList.add('pin-clip-pin-input');
+		input.style.color = (color === 'white' ? '#222' : '#fff');
 
 		pin.appendChild(needle);
 		pin.appendChild(input);
