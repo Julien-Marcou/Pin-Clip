@@ -28,8 +28,7 @@
 		let pin = document.createElement('div');
 		pin.classList.add('pin-clip-pin');
 		pin.style.backgroundColor = color;
-		pin.style.left = `calc(50% + ${contextMenuPosition.x}px)`;
-		pin.style.top = `${contextMenuPosition.y}px`;
+		movePin(pin, contextMenuPosition.x, contextMenuPosition.y);
 		pin.addEventListener('dblclick', (event) => {
 			overlay.removeChild(pin);
 		});
@@ -60,8 +59,12 @@
 	}
 
 	function movePin(pin, x, y) {
-		pin.style.left = `calc(50% + ${x}px)`;
+		pin.style.left = `${x}px`;
 		pin.style.top = `${y}px`;
+
+		if (xOriginCentered) {
+			pin.style.left = `calc(50% + ${x}px)`;
+		}
 	}
 
 	function rotateNeedle(needle, angle) {
