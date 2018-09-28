@@ -12,12 +12,12 @@
 	let elementSelected = null;
 
 	let overlay = document.createElement('div');
-	overlay.className = 'pin-clip-overlay';
+	overlay.classList.add('pin-clip-overlay');
 	document.body.appendChild(overlay);
 
 	function addPin(color) {
 		let pin = document.createElement('div');
-		pin.className = 'pin-clip-pin'
+		pin.classList.add('pin-clip-pin');
 		pin.setAttribute('style', `background-color: ${color}; width: ${pinSize}px; height: ${pinSize}px; position: absolute; border-radius: ${pinSize}px; left: ${contextMenuPosition.x - (pinSize / 2)}px; top: ${contextMenuPosition.y - (pinSize / 2)}px; filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));`);
 		pin.addEventListener('dblclick', (event) => {
 			overlay.removeChild(pin);
