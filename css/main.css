@@ -9,9 +9,17 @@ body {
 	right: 0;
 	z-index: 9999;
 }
-.pin-clip-overlay-hidden {
+.pin-clip-overlay.pin-clip-overlay-hidden {
 	display: none;
 }
+.pin-clip-overlay > .pin-clip-overlay-origin {
+	position: absolute;
+	top: 0;
+	width: 0;
+	height: 0;
+	overflow: visible;
+}
+
 .pin-clip-pin {
 	position: absolute;
 	width: 42px;

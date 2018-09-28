@@ -6,122 +6,118 @@
 
 	window.hasRun = true;
 
-	const xOriginCentered = true;
-
 	let contextMenuPosition = {x: 0, y: 0, source: null};
-	let elementSelected = null;
 
-	let overlay = document.createElement('div');
-	overlay.classList.add('pin-clip-overlay', 'pin-clip-overlay-hidden');
-	document.body.appendChild(overlay);
+	let overlay = new Overlay();
+	overlay.renderIn(document.body);
 
-	function toggleOverlay() {
-		if (overlay.classList.contains('pin-clip-overlay-hidden')) {
-			overlay.classList.remove('pin-clip-overlay-hidden');
-		}
-		else {
-			overlay.classList.add('pin-clip-overlay-hidden');
-		}
-	}
+	// function addPin(color, x, y) {
+	// 	let pin = document.createElement('div');
+	// 	pin.classList.add('pin-clip-pin');
+	// 	pin.style.backgroundColor = color;
+	// 	movePin(pin, x, y);
+	// 	pin.addEventListener('dblclick', (event) => {
+	// 		overlay.removeChild(pin);
+	// 	});
+	// 	pin.addEventListener('mousedown', (event) => {
+	// 		elementSelected = event.target.parentElement;
+	// 		document.addEventListener('mousemove', onPinDrag, true);
+	// 	});
 
-	function addPin(color, x, y) {
-		let pin = document.createElement('div');
-		pin.classList.add('pin-clip-pin');
-		pin.style.backgroundColor = color;
-		movePin(pin, x, y);
-		pin.addEventListener('dblclick', (event) => {
-			overlay.removeChild(pin);
-		});
-		pin.addEventListener('mousedown', (event) => {
-			elementSelected = event.target.parentElement;
-			document.addEventListener('mousemove', onPinDrag, true);
-		});
+	// 	let needle = document.createElement('div');
+	// 	needle.classList.add('pin-clip-pin-needle');
+	// 	needle.style.borderTopColor = color;
+	// 	needle.addEventListener('mousedown', (event) => {
+	// 		event.preventDefault();
+	// 		event.stopPropagation();
+	// 		elementSelected = event.target;
+	// 		document.addEventListener('mousemove', onNeedleDrag, true);
+	// 	});
 
-		let needle = document.createElement('div');
-		needle.classList.add('pin-clip-pin-needle');
-		needle.style.borderTopColor = color;
-		needle.addEventListener('mousedown', (event) => {
-			event.preventDefault();
-			event.stopPropagation();
-			elementSelected = event.target;
-			document.addEventListener('mousemove', onNeedleDrag, true);
-		});
+	// 	let input = document.createElement('input');
+	// 	input.classList.add('pin-clip-pin-input');
+	// 	input.style.color = (color === 'white' ? '#222' : '#fff');
 
-		let input = document.createElement('input');
-		input.classList.add('pin-clip-pin-input');
-		input.style.color = (color === 'white' ? '#222' : '#fff');
+	// 	pin.appendChild(needle);
+	// 	pin.appendChild(input);
+	// 	overlay.appendChild(pin);
 
-		pin.appendChild(needle);
-		pin.appendChild(input);
-		overlay.appendChild(pin);
+	// 	input.focus();
+	// }
 
-		input.focus();
-	}
+	// function movePin(pin, x, y) {
+	// 	pin.style.left = `${x}px`;
+	// 	pin.style.top = `${y}px`;
 
-	function movePin(pin, x, y) {
-		pin.style.left = `${x}px`;
-		pin.style.top = `${y}px`;
+	// 	if (xOriginCentered) {
+	// 		pin.style.left = `calc(50% + ${x}px)`;
+	// 	}
+	// }
 
-		if (xOriginCentered) {
-			pin.style.left = `calc(50% + ${x}px)`;
-		}
-	}
+	// function rotateNeedle(needle, angle) {
+	// 	needle.style.transform = `rotate(${angle}rad)`;
+	// }
 
-	function rotateNeedle(needle, angle) {
-		needle.style.transform = `rotate(${angle}rad)`;
-	}
+	// function onPinDrag(event) {
+	// 	let pin = elementSelected;
+	// 	let x = event.clientX + window.scrollX;
+	// 	let y = event.clientY  + window.scrollY;
 
-	function onPinDrag(event) {
-		let pin = elementSelected;
-		let x = event.clientX + window.scrollX;
-		let y = event.clientY  + window.scrollY;
+	// 	if (xOriginCentered) {
+	// 		x -= (document.body.clientWidth/2);
+	// 	}
 
-		if (xOriginCentered) {
-			x -= (document.body.clientWidth/2);
-		}
+	// 	movePin(pin, x, y);
+	// }
 
-		movePin(pin, x, y);
-	}
+	// function onNeedleDrag(event) {
+	// 	let needle = elementSelected;
+	// 	let pin = needle.parentElement;
 
-	function onNeedleDrag(event) {
-		let needle = elementSelected;
-		let pin = needle.parentElement;
+	// 	let p1 = {
+	// 		x: pin.offsetLeft,
+	// 		y: pin.offsetTop
+	// 	};
+	// 	let p2 = {
+	// 		x: event.clientX + window.scrollX,
+	// 		y: event.clientY  + window.scrollY
+	// 	};
+	// 	let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) - (Math.PI / 2);
 
-		let p1 = {
-			x: pin.offsetLeft,
-			y: pin.offsetTop
-		};
-		let p2 = {
-			x: event.clientX + window.scrollX,
-			y: event.clientY  + window.scrollY
-		};
-		let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) - (Math.PI / 2);
+	// 	rotateNeedle(needle, angle);
+	// }
 
-		rotateNeedle(needle, angle);
-	}
+	// document.addEventListener('mouseup', (event) => {
+	// 	elementSelected = null;
+	// 	document.removeEventListener('mousemove', onPinDrag, true);
+	// 	document.removeEventListener('mousemove', onNeedleDrag, true);
+	// });
 
 	document.addEventListener('contextmenu', (event) => {
 		contextMenuPosition.source = event.target;
 		contextMenuPosition.x = event.clientX + window.scrollX;
 		contextMenuPosition.y = event.clientY + window.scrollY;
 
-		if (xOriginCentered) {
+		if (overlay.getXOrigin() === OverlayOrigin.Center) {
 			contextMenuPosition.x -= (document.body.clientWidth/2);
 		}
-	});
-
-	document.addEventListener('mouseup', (event) => {
-		elementSelected = null;
-		document.removeEventListener('mousemove', onPinDrag, true);
-		document.removeEventListener('mousemove', onNeedleDrag, true);
+		else if (overlay.getXOrigin() === OverlayOrigin.Right) {
+			contextMenuPosition.x -= document.body.clientWidth;
+		}
 	});
 
 	browser.runtime.onMessage.addListener((message) => {
 		if (message.command === 'add-pin') {
-			addPin(message.color, contextMenuPosition.x, contextMenuPosition.y);
+			let pin = new Pin(message.color, contextMenuPosition.x, contextMenuPosition.y);
+			overlay.addPin(pin);
 		}
 		else if (message.command === 'toggle-overlay') {
-			toggleOverlay();
+			if (overlay.isHidden()) {
+				overlay.show();
+			}
+			else {
+				overlay.hide();
+			}
 		}
 	});
 

@@ -7,7 +7,7 @@
   "default_locale": "en",
   "applications": {
     "gecko": {
-      "strict_min_version": "58"
+      "strict_min_version": "60"
     }
   },
 
@@ -24,8 +24,8 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["js/main.js"],
-      "css" : ["css/mains.css"]
+      "js": ["js/overlay.js", "js/pin.js", "js/main.js"],
+      "css" : ["css/main.css"]
     }
   ],
 
