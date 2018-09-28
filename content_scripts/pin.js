@@ -35,7 +35,7 @@
 		});
 		pin.addEventListener('mousedown', (event) => {
 			elementSelected = event.target.parentElement;
-			document.addEventListener('mousemove', movePin, true);
+			document.addEventListener('mousemove', onPinDrag, true);
 		});
 
 		let needle = document.createElement('div');
@@ -45,7 +45,7 @@
 			event.preventDefault();
 			event.stopPropagation();
 			elementSelected = event.target;
-			document.addEventListener('mousemove', moveNeedle, true);
+			document.addEventListener('mousemove', onNeedleDrag, true);
 		});
 
 		let input = document.createElement('input');
@@ -59,20 +59,28 @@
 		input.focus();
 	}
 
-	function movePin(event) {
-		let mouseXPosition = event.clientX + window.scrollX;
-		let mouseYPosition = event.clientY  + window.scrollY;
-
-		if (xOriginCentered) {
-			mouseXPosition -= (document.body.clientWidth/2);
-		}
-
-		let pin = elementSelected;
-		pin.style.left = `calc(50% + ${mouseXPosition}px)`;
-		pin.style.top = `${mouseYPosition}px`;
+	function movePin(pin, x, y) {
+		pin.style.left = `calc(50% + ${x}px)`;
+		pin.style.top = `${y}px`;
 	}
 
-	function moveNeedle(event) {
+	function rotateNeedle(needle, angle) {
+		needle.style.transform = `rotate(${angle}rad)`;
+	}
+
+	function onPinDrag(event) {
+		let pin = elementSelected;
+		let x = event.clientX + window.scrollX;
+		let y = event.clientY  + window.scrollY;
+
+		if (xOriginCentered) {
+			x -= (document.body.clientWidth/2);
+		}
+
+		movePin(pin, x, y);
+	}
+
+	function onNeedleDrag(event) {
 		let needle = elementSelected;
 		let pin = needle.parentElement;
 
@@ -84,9 +92,9 @@
 			x: event.clientX + window.scrollX,
 			y: event.clientY  + window.scrollY
 		};
-		var angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) - (Math.PI / 2);
+		let angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) - (Math.PI / 2);
 
-		needle.style.transform = `rotate(${angle}rad)`;
+		rotateNeedle(needle, angle);
 	}
 
 	document.addEventListener('contextmenu', (event) => {
@@ -101,8 +109,8 @@
 
 	document.addEventListener('mouseup', (event) => {
 		elementSelected = null;
-		document.removeEventListener('mousemove', movePin, true);
-		document.removeEventListener('mousemove', moveNeedle, true);
+		document.removeEventListener('mousemove', onPinDrag, true);
+		document.removeEventListener('mousemove', onNeedleDrag, true);
 	});
 
 	browser.runtime.onMessage.addListener((message) => {
