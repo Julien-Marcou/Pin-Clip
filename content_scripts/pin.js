@@ -24,11 +24,11 @@
 		}
 	}
 
-	function addPin(color) {
+	function addPin(color, x, y) {
 		let pin = document.createElement('div');
 		pin.classList.add('pin-clip-pin');
 		pin.style.backgroundColor = color;
-		movePin(pin, contextMenuPosition.x, contextMenuPosition.y);
+		movePin(pin, x, y);
 		pin.addEventListener('dblclick', (event) => {
 			overlay.removeChild(pin);
 		});
@@ -118,7 +118,7 @@
 
 	browser.runtime.onMessage.addListener((message) => {
 		if (message.command === 'add-pin') {
-			addPin(message.color);
+			addPin(message.color, contextMenuPosition.x, contextMenuPosition.y);
 		}
 		else if (message.command === 'toggle-overlay') {
 			toggleOverlay();
