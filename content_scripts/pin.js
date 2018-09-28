@@ -12,7 +12,7 @@
 	let elementSelected = null;
 
 	let overlay = document.createElement('div');
-	overlay.classList.add('pin-clip-overlay');
+	overlay.classList.add('pin-clip-overlay', 'pin-clip-overlay-hidden');
 	document.body.appendChild(overlay);
 
 	function addPin(color) {
