@@ -15,6 +15,15 @@
 	overlay.classList.add('pin-clip-overlay', 'pin-clip-overlay-hidden');
 	document.body.appendChild(overlay);
 
+	function toggleOverlay() {
+		if (overlay.classList.contains('pin-clip-overlay-hidden')) {
+			overlay.classList.remove('pin-clip-overlay-hidden');
+		}
+		else {
+			overlay.classList.add('pin-clip-overlay-hidden');
+		}
+	}
+
 	function addPin(color) {
 		let pin = document.createElement('div');
 		pin.classList.add('pin-clip-pin');
@@ -84,6 +93,9 @@
 	browser.runtime.onMessage.addListener((message) => {
 		if (message.command === 'add-pin') {
 			addPin(message.color);
+		}
+		else if (message.command === 'toggle-overlay') {
+			toggleOverlay();
 		}
 	});
 
