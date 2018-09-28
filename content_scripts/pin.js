@@ -8,6 +8,8 @@
 
 	const pinSize = 42;
 
+	const xOriginCentered = true;
+
 	let contextMenuPosition = {x: 0, y: 0, source: null};
 	let elementSelected = null;
 
@@ -27,7 +29,7 @@
 	function addPin(color) {
 		let pin = document.createElement('div');
 		pin.classList.add('pin-clip-pin');
-		pin.setAttribute('style', `background-color: ${color}; width: ${pinSize}px; height: ${pinSize}px; position: absolute; border-radius: ${pinSize}px; left: ${contextMenuPosition.x - (pinSize / 2)}px; top: ${contextMenuPosition.y - (pinSize / 2)}px; filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));`);
+		pin.setAttribute('style', `background-color: ${color}; width: ${pinSize}px; height: ${pinSize}px; position: absolute; border-radius: ${pinSize}px; left: calc(50% + ${contextMenuPosition.x}px); top: ${contextMenuPosition.y}px; transform: translate(-50%, -50%); filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));`);
 		pin.addEventListener('dblclick', (event) => {
 			overlay.removeChild(pin);
 		});
@@ -56,9 +58,16 @@
 	}
 
 	function movePin(event) {
+		let mouseXPosition = event.clientX + window.scrollX;
+		let mouseYPosition = event.clientY  + window.scrollY;
+
+		if (xOriginCentered) {
+			mouseXPosition -= (document.body.clientWidth/2);
+		}
+
 		let pin = elementSelected;
-		pin.style.left = `${event.clientX + window.scrollX - (pinSize / 2)}px`;
-		pin.style.top = `${event.clientY  + window.scrollY - (pinSize / 2)}px`;
+		pin.style.left = `calc(50% + ${mouseXPosition}px)`;
+		pin.style.top = `${mouseYPosition}px`;
 	}
 
 	function moveNeedle(event) {
@@ -66,8 +75,8 @@
 		let pin = needle.parentElement;
 
 		let p1 = {
-			x: pin.offsetLeft + (pinSize / 2),
-			y: pin.offsetTop + (pinSize / 2)
+			x: pin.offsetLeft,
+			y: pin.offsetTop
 		};
 		let p2 = {
 			x: event.clientX + window.scrollX,
@@ -82,6 +91,10 @@
 		contextMenuPosition.source = event.target;
 		contextMenuPosition.x = event.clientX + window.scrollX;
 		contextMenuPosition.y = event.clientY + window.scrollY;
+
+		if (xOriginCentered) {
+			contextMenuPosition.x -= (document.body.clientWidth/2);
+		}
 	});
 
 	document.addEventListener('mouseup', (event) => {
