@@ -20,12 +20,19 @@ class Overlay {
 
 		this.overlayOriginElement = document.createElement('div');
 		this.overlayOriginElement.classList.add('pin-clip-overlay-origin');
-		
+
 		this.overlayElement.appendChild(this.overlayOriginElement);
+
+		this.initEvent();
 	}
 
 	getElement() {
 		return this.overlayElement;
+	}
+
+	initEvent() {
+		this._onPinDelete = this.onPinDelete.bind(this);
+		this.overlayElement.addEventListener('pin-delete', this._onPinDelete);
 	}
 
 	setXOrigin(xOrigin) {
@@ -75,6 +82,10 @@ class Overlay {
 		this.pins.splice(pinIndex, 1);
 
 		this.overlayOriginElement.removeChild(pin.getElement());
+	}
+
+	onPinDelete(event) {
+		this.removePin(event.detail.pin);
 	}
 
 }

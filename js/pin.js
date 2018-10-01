@@ -20,10 +20,17 @@ class Pin {
 
 		this.pinElement.appendChild(this.pinInputElement);
 		this.pinElement.appendChild(this.pinNeedleElement);
+
+		this.initEvent();
 	}
 
 	getElement() {
 		return this.pinElement;
+	}
+
+	initEvent() {
+		this._onPinDoubleClick = this.onPinDoubleClick.bind(this);
+		this.pinElement.addEventListener('dblclick', this._onPinDoubleClick);
 	}
 
 	setColor(color) {
@@ -71,6 +78,14 @@ class Pin {
 
 	focus() {
 		this.pinInputElement.focus();
+	}
+
+	onPinDoubleClick(event) {
+		let deleteEvent = new CustomEvent('pin-delete', {
+			bubbles: true,
+			detail: {pin: this},
+		});
+		this.pinElement.dispatchEvent(deleteEvent);
 	}
 
 }
