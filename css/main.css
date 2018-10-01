@@ -32,6 +32,7 @@ html, body {
 }
 .pin-clip-pin > .pin-clip-pin-needle {
 	position: absolute;
+	z-index: 5;
 	top: 24px;
 	left: 7px;
 	width: 0;
@@ -43,6 +44,7 @@ html, body {
 }
 .pin-clip-pin > .pin-clip-pin-input {
 	position: absolute;
+	z-index: 10;
 	top: 0;
 	left: 0;
 	width: 100%;
