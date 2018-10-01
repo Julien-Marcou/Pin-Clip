@@ -36,6 +36,11 @@ class Pin {
 		this._onPinRelease = this.onPinRelease.bind(this);
 		this._onPinMove = this.onPinMove.bind(this);
 		this.pinElement.addEventListener('mousedown', this._onPinGrab);
+
+		this._onNeedleGrab = this.onNeedleGrab.bind(this);
+		this._onNeedleRelease = this.onNeedleRelease.bind(this);
+		this._onNeedleMove = this.onNeedleMove.bind(this);
+		this.pinNeedleElement.addEventListener('mousedown', this._onNeedleGrab);
 	}
 
 	setColor(color) {
@@ -94,8 +99,17 @@ class Pin {
 	}
 
 	onPinGrab(event) {
+		event.preventDefault();
+		event.stopPropagation();
 		document.addEventListener('mousemove', this._onPinMove);
 		document.addEventListener('mouseup', this._onPinRelease);
+	}
+
+	onNeedleGrab(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		document.addEventListener('mousemove', this._onNeedleMove);
+		document.addEventListener('mouseup', this._onNeedleRelease);
 	}
 
 	onPinMove(event) {
@@ -106,9 +120,26 @@ class Pin {
 		this.setPosition(x, y);
 	}
 
+	onNeedleMove(event) {
+		let origin = this.pinElement.parentElement;
+		let x1 = this.pinElement.offsetLeft;
+		let y1 = this.pinElement.offsetTop;
+		let x2 = event.pageX - origin.offsetLeft;
+		let y2 = event.pageY - origin.offsetTop;
+
+		let angle = Math.atan2(y2 - y1, x2 - x1) - (Math.PI / 2);
+
+		this.setAngle(angle);
+	}
+
 	onPinRelease(event) {
 		document.removeEventListener('mousemove', this._onPinMove);
 		document.removeEventListener('mouseup', this._onPinRelease);
+	}
+
+	onNeedleRelease(event) {
+		document.removeEventListener('mousemove', this._onNeedleMove);
+		document.removeEventListener('mouseup', this._onNeedleRelease);
 	}
 
 }
