@@ -1,5 +1,7 @@
-body {
+html, body {
 	position: relative;
+	height: inherit;
+	min-height: 100%;
 }
 .pin-clip-overlay {
 	position: absolute;
