@@ -69,4 +69,8 @@ class Pin {
 		return this.angle;
 	}
 
+	focus() {
+		this.pinInputElement.focus();
+	}
+
 }
