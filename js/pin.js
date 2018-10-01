@@ -31,6 +31,11 @@ class Pin {
 	initEvent() {
 		this._onPinDoubleClick = this.onPinDoubleClick.bind(this);
 		this.pinElement.addEventListener('dblclick', this._onPinDoubleClick);
+
+		this._onPinGrab = this.onPinGrab.bind(this);
+		this._onPinRelease = this.onPinRelease.bind(this);
+		this._onPinMove = this.onPinMove.bind(this);
+		this.pinElement.addEventListener('mousedown', this._onPinGrab);
 	}
 
 	setColor(color) {
@@ -86,6 +91,24 @@ class Pin {
 			detail: {pin: this},
 		});
 		this.pinElement.dispatchEvent(deleteEvent);
+	}
+
+	onPinGrab(event) {
+		document.addEventListener('mousemove', this._onPinMove);
+		document.addEventListener('mouseup', this._onPinRelease);
+	}
+
+	onPinMove(event) {
+		let origin = this.pinElement.parentElement;
+		let x = event.pageX - origin.offsetLeft;
+		let y = event.pageY - origin.offsetTop;
+
+		this.setPosition(x, y);
+	}
+
+	onPinRelease(event) {
+		document.removeEventListener('mousemove', this._onPinMove);
+		document.removeEventListener('mouseup', this._onPinRelease);
 	}
 
 }
