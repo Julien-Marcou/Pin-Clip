@@ -54,6 +54,13 @@ class Overlay {
 		return this.xOrigin;
 	}
 
+	getOriginPosition() {
+		return {
+			x: this.overlayOriginElement.offsetLeft,
+			y: this.overlayOriginElement.offsetTop,
+		};
+	}
+
 	hide() {
 		this.hidden = true;
 		this.overlayElement.classList.add('pin-clip-overlay-hidden');

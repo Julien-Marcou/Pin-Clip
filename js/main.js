@@ -6,7 +6,10 @@
 
 	window.hasRun = true;
 
-	let contextMenuPosition = {x: 0, y: 0, source: null};
+	let contextMenuPosition = {
+		x: 0,
+		y: 0,
+	};
 
 	let overlay = new Overlay();
 	document.body.appendChild(overlay.getElement());
@@ -94,16 +97,9 @@
 	// });
 
 	document.addEventListener('contextmenu', (event) => {
-		contextMenuPosition.source = event.target;
-		contextMenuPosition.x = event.clientX + window.scrollX;
-		contextMenuPosition.y = event.clientY + window.scrollY;
-
-		if (overlay.getXOrigin() === OverlayOrigin.Center) {
-			contextMenuPosition.x -= (document.body.clientWidth/2);
-		}
-		else if (overlay.getXOrigin() === OverlayOrigin.Right) {
-			contextMenuPosition.x -= document.body.clientWidth;
-		}
+		let originPosition = overlay.getOriginPosition();
+		contextMenuPosition.x = event.pageX - originPosition.x;
+		contextMenuPosition.y = event.pageY - originPosition.y;
 	});
 
 	browser.runtime.onMessage.addListener((message) => {
