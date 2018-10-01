@@ -69,15 +69,4 @@ class Pin {
 		return this.angle;
 	}
 
-	renderIn(overlayOriginElement) {
-		overlayOriginElement.appendChild(this.pinElement);
-		if (this.pinInputElement.offsetParent !== null) {
-			this.pinInputElement.focus();
-		}
-	}
-
-	destroyFrom(overlayOriginElement) {
-		overlayOriginElement.removeChild(this.pinElement);
-	}
-
 }

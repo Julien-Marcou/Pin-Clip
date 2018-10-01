@@ -63,21 +63,15 @@ class Overlay {
 
 	addPin(pin) {
 		this.pins.push(pin);
-		pin.renderIn(this.overlayOriginElement);
+
+		this.overlayOriginElement.appendChild(pin.getElement());
 	}
 
 	removePin(pin) {
 		let pinIndex = this.pins.indexOf(pin);
 		this.pins.splice(pinIndex, 1);
-		pin.destroyFrom(this.overlayOriginElement);
-	}
 
-	renderIn(bodyElement) {
-		bodyElement.appendChild(this.overlayElement);
-	}
-
-	destroyFrom(bodyElement) {
-		bodyElement.removeChild(this.overlayElement);
+		this.overlayOriginElement.removeChild(pin.getElement());
 	}
 
 }

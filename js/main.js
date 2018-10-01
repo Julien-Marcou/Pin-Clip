@@ -9,7 +9,7 @@
 	let contextMenuPosition = {x: 0, y: 0, source: null};
 
 	let overlay = new Overlay();
-	overlay.renderIn(document.body);
+	document.body.appendChild(overlay.getElement());
 
 	// function addPin(color, x, y) {
 	// 	let pin = document.createElement('div');
