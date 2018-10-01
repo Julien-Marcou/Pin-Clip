@@ -79,9 +79,12 @@ class Overlay {
 		this.pins.push(pin);
 
 		this.overlayOriginElement.appendChild(pin.getElement());
-		if (!this.isHidden()) {
-			pin.focus();
+
+		if (this.isHidden()) {
+			this.show();
 		}
+
+		pin.focus();
 	}
 
 	removePin(pin) {
