@@ -29,6 +29,9 @@ class Pin {
 	}
 
 	initEvent() {
+		this._onPinClick = this.onPinClick.bind(this);
+		this.pinElement.addEventListener('click', this._onPinClick);
+
 		this._onPinDoubleClick = this.onPinDoubleClick.bind(this);
 		this.pinElement.addEventListener('dblclick', this._onPinDoubleClick);
 
@@ -88,6 +91,10 @@ class Pin {
 
 	focus() {
 		this.pinInputElement.focus();
+	}
+
+	onPinClick(event) {
+		this.focus();
 	}
 
 	onPinDoubleClick(event) {
