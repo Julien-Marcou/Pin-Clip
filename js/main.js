@@ -37,6 +37,18 @@
 				overlay.hide();
 			}
 		}
+		else if (message.command === 'export-data') {
+			let data = JSON.stringify(overlay.serialize());
+			let filename = window.location + '.json';
+			let file = new File([data], filename, {type: 'application/json'});
+
+			let downloadLink = document.createElement('a');
+			downloadLink.href = window.URL.createObjectURL(file);
+			downloadLink.download = filename;
+			document.body.appendChild(downloadLink);
+			downloadLink.click();
+			document.body.removeChild(downloadLink);
+		}
 	});
 
 })();

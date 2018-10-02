@@ -123,4 +123,13 @@ class Overlay {
 		this.removeBracket(event.detail.bracket);
 	}
 
+	serialize() {
+		return {
+			hidden: this.hidden,
+			xOrigin: this.xOrigin,
+			pins: this.pins.map(pin => pin.serialize()),
+			brackets: this.brackets.map(bracket => bracket.serialize()),
+		};
+	}
+
 }

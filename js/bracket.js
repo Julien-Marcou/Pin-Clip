@@ -172,4 +172,14 @@ class Bracket {
 		document.removeEventListener('mouseup', this._onBottomTipRelease);
 	}
 
+	serialize() {
+		return {
+			color: this.color,
+			x: this.x,
+			y: this.y,
+			size: this.size,
+			angle: this.angle,
+		};
+	}
+
 }

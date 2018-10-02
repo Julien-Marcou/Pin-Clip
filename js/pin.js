@@ -149,4 +149,14 @@ class Pin {
 		document.removeEventListener('mouseup', this._onNeedleRelease);
 	}
 
+	serialize() {
+		return {
+			value: this.value,
+			color: this.color,
+			x: this.x,
+			y: this.y,
+			angle: this.angle,
+		};
+	}
+
 }
