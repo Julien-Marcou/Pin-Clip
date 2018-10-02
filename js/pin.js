@@ -29,6 +29,9 @@ class Pin {
 	}
 
 	initEvent() {
+		this._onInputChange = this.onInputChange.bind(this);
+		this.pinInputElement.addEventListener('change', this._onInputChange);
+
 		this._onPinClick = this.onPinClick.bind(this);
 		this.pinElement.addEventListener('click', this._onPinClick);
 
@@ -103,6 +106,10 @@ class Pin {
 			detail: {pin: this},
 		});
 		this.pinElement.dispatchEvent(deleteEvent);
+	}
+
+	onInputChange(event) {
+		this.setValue(this.pinInputElement.value);
 	}
 
 	onPinGrab(event) {
