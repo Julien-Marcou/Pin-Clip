@@ -1,6 +1,6 @@
 # Pin&Clip
 
-A browser extension that help you anotate pages.
+A browser extension that helps you anotate pages.
 
  * Right click to add pins or brackets
  * Double click to remove
