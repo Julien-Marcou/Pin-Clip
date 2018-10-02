@@ -13,5 +13,21 @@
 	},
 	"addWhitePin": {
 		"message": "Ajouter une épingle blanche"
+	},
+
+	"addRedBracket": {
+		"message": "Ajouter une accolade rouge"
+	},
+	"addGreenBracket": {
+		"message": "Ajouter une accolade verte"
+	},
+	"addBlueBracket": {
+		"message": "Ajouter une accolade bleue"
+	},
+	"addBlackBracket": {
+		"message": "Ajouter une accolade noire"
+	},
+	"addWhiteBracket": {
+		"message": "Ajouter une accolade blanche"
 	}
 }

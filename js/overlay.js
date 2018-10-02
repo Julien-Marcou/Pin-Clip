@@ -12,6 +12,7 @@ class Overlay {
 		this.hide();
 		this.setXOrigin(xOrigin);
 		this.pins = [];
+		this.brackets = [];
 	}
 
 	initElement() {
@@ -33,6 +34,9 @@ class Overlay {
 	initEvent() {
 		this._onPinDelete = this.onPinDelete.bind(this);
 		this.overlayElement.addEventListener('pin-delete', this._onPinDelete);
+
+		this._onBracketDelete = this.onBracketDelete.bind(this);
+		this.overlayElement.addEventListener('bracket-delete', this._onBracketDelete);
 	}
 
 	setXOrigin(xOrigin) {
@@ -96,6 +100,27 @@ class Overlay {
 
 	onPinDelete(event) {
 		this.removePin(event.detail.pin);
+	}
+
+	addBracket(bracket) {
+		this.brackets.push(bracket);
+
+		this.overlayOriginElement.appendChild(bracket.getElement());
+
+		if (this.isHidden()) {
+			this.show();
+		}
+	}
+
+	removeBracket(bracket) {
+		let bracketIndex = this.brackets.indexOf(bracket);
+		this.brackets.splice(bracketIndex, 1);
+
+		this.overlayOriginElement.removeChild(bracket.getElement());
+	}
+
+	onBracketDelete(event) {
+		this.removeBracket(event.detail.bracket);
 	}
 
 }

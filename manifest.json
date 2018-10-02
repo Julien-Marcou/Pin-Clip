@@ -24,7 +24,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["js/overlay.js", "js/pin.js", "js/main.js"],
+      "js": ["js/overlay.js", "js/bracket.js", "js/pin.js", "js/main.js"],
       "css" : ["css/main.css"]
     }
   ],

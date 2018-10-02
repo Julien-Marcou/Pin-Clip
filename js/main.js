@@ -13,7 +13,7 @@
 
 	let overlay = new Overlay();
 	document.body.appendChild(overlay.getElement());
-	
+
 	document.addEventListener('contextmenu', (event) => {
 		let originPosition = overlay.getOriginPosition();
 		contextMenuPosition.x = event.pageX - originPosition.x;
@@ -24,6 +24,10 @@
 		if (message.command === 'add-pin') {
 			let pin = new Pin(message.color, contextMenuPosition.x, contextMenuPosition.y);
 			overlay.addPin(pin);
+		}
+		else if (message.command === 'add-bracket') {
+			let bracket = new Bracket(message.color, contextMenuPosition.x, contextMenuPosition.y);
+			overlay.addBracket(bracket);
 		}
 		else if (message.command === 'toggle-overlay') {
 			if (overlay.isHidden()) {

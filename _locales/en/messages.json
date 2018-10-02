@@ -13,5 +13,21 @@
 	},
 	"addWhitePin": {
 		"message": "Add a white pin"
+	},
+
+	"addRedBracket": {
+		"message": "Add a red bracket"
+	},
+	"addGreenBracket": {
+		"message": "Add a green bracket"
+	},
+	"addBlueBracket": {
+		"message": "Add a blue bracket"
+	},
+	"addBlackBracket": {
+		"message": "Add a black bracket"
+	},
+	"addWhiteBracket": {
+		"message": "Add a white bracket"
 	}
 }
