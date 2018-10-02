@@ -11,10 +11,10 @@
     }
   },
 
-  "browser_action": {
+  "sidebar_action": {
     "default_icon": "icons/flag-32.png",
     "default_title": "Pin&Clip",
-    "default_popup": "popup/pin-clip.html"
+    "default_panel": "sidebar/pin-clip.html"
   },
 
   "background": {
