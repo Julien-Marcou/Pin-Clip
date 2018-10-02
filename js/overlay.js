@@ -132,4 +132,30 @@ class Overlay {
 		};
 	}
 
+	static unserialize(serializedOverlay) {
+		let overlay = new Overlay();
+
+		overlay.setXOrigin(serializedOverlay.xOrigin);
+
+		for (let serializedPin of serializedOverlay.pins) {
+			let pin = Pin.unserialize(serializedPin);
+			overlay.addPin(pin);
+		}
+
+		for (let serializedBracket of serializedOverlay.brackets) {
+			let bracket = Bracket.unserialize(serializedBracket);
+			overlay.addBracket(bracket);
+		}
+
+		// Hide/show overlay at the and, as adding pins and/or brackets will change the visiblity of the overlay
+		if (serializedOverlay.hidden) {
+			overlay.hide();
+		}
+		else {
+			overlay.show();
+		}
+
+		return overlay;
+	}
+
 }

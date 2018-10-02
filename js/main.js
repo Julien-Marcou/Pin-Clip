@@ -49,6 +49,18 @@
 			downloadLink.click();
 			document.body.removeChild(downloadLink);
 		}
+		else if (message.command === 'import-data') {
+			let reader = new FileReader();
+			reader.readAsText(message.data.file);
+			reader.addEventListener('loadend', (event) => {
+				document.body.removeChild(overlay.getElement());
+
+				let data = JSON.parse(reader.result);
+				overlay = Overlay.unserialize(data);
+
+				document.body.appendChild(overlay.getElement());
+			});
+		}
 	});
 
 })();

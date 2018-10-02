@@ -182,4 +182,15 @@ class Bracket {
 		};
 	}
 
+	static unserialize(serializedBracket) {
+		let bracket = new Bracket('red', 0, 0);
+
+		bracket.setColor(serializedBracket.color);
+		bracket.setPosition(serializedBracket.x, serializedBracket.y);
+		bracket.setSize(serializedBracket.size);
+		bracket.setAngle(serializedBracket.angle);
+
+		return bracket;
+	}
+
 }

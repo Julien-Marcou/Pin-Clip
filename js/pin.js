@@ -159,4 +159,15 @@ class Pin {
 		};
 	}
 
+	static unserialize(serializedPin) {
+		let pin = new Pin('red', 0, 0);
+
+		pin.setValue(serializedPin.value);
+		pin.setColor(serializedPin.color);
+		pin.setPosition(serializedPin.x, serializedPin.y);
+		pin.setAngle(serializedPin.angle);
+
+		return pin;
+	}
+
 }
