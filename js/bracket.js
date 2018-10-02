@@ -1,6 +1,6 @@
 class Bracket {
 
-	constructor(color, x, y, size = 160, angle = 0) {
+	constructor(color = 'red', x = 0, y = 0, size = 160, angle = 0) {
 		this.initElement();
 		this.setColor(color);
 		this.setPosition(x, y);
@@ -183,7 +183,7 @@ class Bracket {
 	}
 
 	static unserialize(serializedBracket) {
-		let bracket = new Bracket('red', 0, 0);
+		let bracket = new Bracket();
 
 		bracket.setColor(serializedBracket.color);
 		bracket.setPosition(serializedBracket.x, serializedBracket.y);

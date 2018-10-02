@@ -1,6 +1,6 @@
 class Pin {
 
-	constructor(color, x, y, angle = 0) {
+	constructor(color = 'red', x = 0, y = 0, angle = 0) {
 		this.initElement();
 		this.setValue('');
 		this.setColor(color);
@@ -160,7 +160,7 @@ class Pin {
 	}
 
 	static unserialize(serializedPin) {
-		let pin = new Pin('red', 0, 0);
+		let pin = new Pin();
 
 		pin.setValue(serializedPin.value);
 		pin.setColor(serializedPin.color);
