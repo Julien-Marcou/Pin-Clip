@@ -5,12 +5,19 @@ body {
 	width: 350px;
 	color: #111;
 	font-size: 18px;
+	font-family: Arial, sans-serif
 }
+
+.hidden {
+	display: none;
+}
+
 .row {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 5px;
 }
+
 .column {
 	padding: 5px;
 }
@@ -20,7 +27,9 @@ body {
 .column.width-50 {
 	flex: 0 0 50%;
 }
-button {
+
+.action {
+	display: block;
 	cursor: pointer;
 	width: 100%;
 	background: #eee;
@@ -31,6 +40,6 @@ button {
 	line-height: 2rem;
 	text-align: center;
 }
-button:hover {
+.action:hover {
 	background-color: #ddd;
 }

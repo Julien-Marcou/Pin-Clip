@@ -11,15 +11,16 @@
 		<section class="row">
 
 			<div class="column width-100">
-				<button data-command="toggle-overlay">Afficher/Masquer l'overlay</button>
+				<button class="action" data-command="toggle-overlay">Afficher/Masquer l'overlay</button>
 			</div>
 
 			<div class="column width-50">
-				<button data-command="import-data">Importer</button>
+				<input class="hidden" id="file-input" type="file">
+				<button class="action" data-command="import-data">Importer</button>
 			</div>
 
 			<div class="column width-50">
-				<button data-command="export-data">Exporter</button>
+				<button class="action" data-command="export-data">Exporter</button>
 			</div>
 
 		</section>
