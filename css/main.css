@@ -29,6 +29,7 @@ html, body {
 	border-radius: 42px;
 	transform: translate(-50%, -50%);
 	filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));
+	cursor: all-scroll;
 }
 .pin-clip-pin > .pin-clip-pin-needle {
 	position: absolute;
@@ -41,6 +42,7 @@ html, body {
 	border-width: 42px 14px 0 14px;
 	border-style: solid;
 	transform-origin: center top;
+	cursor: ew-resize;
 }
 .pin-clip-pin > .pin-clip-pin-input {
 	position: absolute;
@@ -56,13 +58,15 @@ html, body {
 	text-align: center;
 	font-size: 16px;
 	font-weight: bold;
+	cursor: inherit;
 }
 
 .pin-clip-bracket {
 	position: absolute;
 	width: 4px;
-	/*transform: translate(-50%, -50%);*/
+	transform: translate(-50%, -50%);
 	filter: drop-shadow(0 2px 1px rgba(0, 0, 0, 0.4));
+	cursor: all-scroll;
 }
 .pin-clip-bracket > .pin-clip-bracket-top-tip {
 	position: absolute;
@@ -70,6 +74,7 @@ html, body {
 	left: 0;
 	width: 16px;
 	height: 4px;
+	cursor: ew-resize;
 }
 .pin-clip-bracket > .pin-clip-bracket-bottom-tip {
 	position: absolute;
@@ -77,4 +82,5 @@ html, body {
 	left: 0;
 	width: 16px;
 	height: 4px;
+	cursor: ns-resize;
 }
