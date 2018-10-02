@@ -39,6 +39,14 @@
     "32": "icons/flag-32.png",
     "48": "icons/flag-48.png",
     "96": "icons/flag-96.png"
+  },
+
+  "commands": {
+    "_execute_sidebar_action": {
+      "suggested_key": {
+        "default": "Alt+P"
+      }
+    }
   }
 
 }
