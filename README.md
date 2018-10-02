@@ -1,8 +1,12 @@
 # Pin&Clip
 
-Browser extension to pin anything you want.
+A browser extension that help you anotate pages.
 
- * Right click to add
+ * Right click to add pins or brackets
  * Double click to remove
- * Click to edit content
- * Click & drag to move
+ * Simple click to edit content
+ * Click & drag to move/rotate
+
+## Screenshot
+
+![Pin&Clip Example](screenshot.png)
